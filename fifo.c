@@ -1,42 +1,46 @@
 #include<stdio.h>
-int search(int a[],int m,int x)
+int find(int x,int a[],int n)
 {
-    for(int i=0;i<m;i++)
+    for(int i=0;i<n;i++)
     {
         if(a[i]==x)
             return 1;
     }
-    return -1;
+    return 0;
+}
+void print(int a[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%d\t\t",a[i]);
+    }
+    printf("\n");
 }
 int main()
 {
-    int n,m,c=0,h=0;
+    int n,m,h=0,c=0,f=0;
     scanf("%d%d",&n,&m);
-    int a[m],str[n];
-    for(int i=0;i<n;i++)
-    {
-        scanf("%d",&str[i]);
-    }
+    int a[m],s[n];
     for(int i=0;i<m;i++)
     {
         a[i]=-1;
     }
     for(int i=0;i<n;i++)
+        scanf("%d",&s[i]);
+    for(int i=0;i<n;i++)
     {
-        if(search(a,m,str[i])==1) h++;
+        if(find(s[i],a,c)==1)
+        {
+            h++;
+            print(a,m);
+        }
         else
         {
-            a[(c++)%m]=str[i];
-            for(int j=0;j<m;j++)
-            {
-                printf("%d ",a[j]);
-            }
-            printf("\n");
+            a[(c++)%m]=s[i];
+            f++;
+            print(a,m);
         }
+        printf("\n");
     }
-    printf("miss=%d\n",n-h);
-    float x=h/(n*1.0);
-    float y=(n-h)/(n*1.0);
-    printf("miss r=%f\n",y);
-    printf("miss p=%f\n",y*100);
+    printf("%d %d",h,f);
 }
